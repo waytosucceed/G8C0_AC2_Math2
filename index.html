@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Class Activity 1</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="wts.css">
+  <link rel="icon" type="image/x-icon" href="Logo_last.png">
+</head>
+<body>
+  <audio id="cheers" >
+    <source src="cheers.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="points" src="Points.mp3"></audio>
+  <audio id="fail" src="fail.mp3"></audio>
+  <div class="header" style="width:100%; box-shadow:5px 5px 10px rgb(0, 0, 0); padding-bottom:10px;">
+    <img src="Logo.png" width="5%" style="float:left; margin-top:25px;" class="img-responsive">
+    <span> <img src="header.png" width="30%" height="100px" class="img-responsive"></span>
+</div>
+<br>
+<br>
+  <center>
+  <h1 id="heading">Questions</h1>
+
+
+
+  
+  <div class="container">
+
+    <button onclick="abc(1)"  class="smallbtn">Q1</button>
+    <button onclick="abc(2)" class="smallbtn">Q2</button>
+    <button onclick="abc(3)"  class="smallbtn">Q3</button>
+    <button onclick="abc(4)"  class="smallbtn">Q4</button>
+    <button onclick="abc(5)" class="smallbtn">Q5</button>
+    <button onclick="abc(6)" class="smallbtn">Q6</button>
+    <button onclick="abc(7)" class="smallbtn">Q7</button>
+    <button onclick="abc(8)" class="smallbtn">Q8</button>
+  
+ 
+    
+  
+  
+  </div>
+  
+
+  <div class="maindiv container">
+    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="font-size:25px; color:black; font-family:Georgia;">
+      <p id="numdiv"></p>
+      </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 imgdiv" id="picdiv">
+      <img id ="math_ques" src="MAth Question.jpg" width="100%">
+    </div>
+  <div id="questiondiv" class="col-lg-7 col-md-7 col-sm-7 col-xs-8">
+    <div id="question"></div>
+    <br><br>
+  <div class="menu"><br><ul id="options"></ul></div>
+  
+  <button id="subbtn" class="btn btn-success" onclick="checkAnswer()">Submit Answer</button>
+  <button id="nextbtn" class="btn btn-primary" onclick="newques()" style="display:none">Next</button>
+
+  
+  
+  <p id="result"></p>
+  </div>
+</div>
+
+
+
+
+
+
+  <script>
+    // Define an array of questions and their options
+    var questions = [
+    
+    {
+      questionNo: "Q1.",
+      question : " Out of 15,000 voters in a constituency, 60% of people voted. Find the percentage of voters who didn’t vote. Now find out how many of them did not vote.",
+      options: ["8000 votes",
+                "2000 votes",
+                "6000 votes", 
+                "5000 votes"],
+      answer: "6000 votes"
+    },
+
+    {
+      questionNo: "Q2.",
+      question: "Ishan buys a T.V. for ₹ 10,000 and then sells it at a profit of 20%. How much money did Ishan get for it?",
+      options: ["20,000", 
+                "12,000",
+                "2,000", 
+                "22,000"],
+      answer: "12,000"
+    },
+
+    {
+      questionNo: "Q3.",
+      question: " What rate gives ₹ 280 as interest on a sum of ₹ 56,000 in two years?",
+      options: ["0.34%",
+                "0.24%",
+                "0.25%", 
+                "0.28%"],
+      answer: "0.25%"
+    },
+
+
+    {
+      questionNo: "Q4.",
+      question: "Find the value of t:<br><br> 16 = 4 + 3(t + 2)",
+      options: ["2",
+                "5",
+                "0", 
+                "9"],
+      answer: "2"
+    },
+
+    {
+      questionNo: "Q5.",
+      question: "Solve:(-9/10) + (22/15)",
+      options: ["7/30",
+                "17/30",
+                "13/25", 
+                "31/50"],
+      answer: "17/30"
+    },
+
+    {
+      questionNo: "Q6",
+      question: " Mishika always reads a book for one ¾ hour every day. She reads an entire book in 6 days. How many hours in total were required by her to finish the book?",
+      options: ["11 ½ hours","10 ½ hours","8 hours", "12 hours"],
+      answer: "10 ½ hours"
+    },
+
+    {
+      questionNo: "Q7.",
+      question: "The square park and the rectangular park have the same area. Calculate the breadth of the rectangular park when the side of the rectangular park is 60 m and the length of the rectangular park is 90 m.",
+      options: ["50m",
+                "20m",
+                "30m", 
+                "40m"],
+      answer: "40m"
+    },
+
+    {
+      questionNo: "Q8.",
+      question: "Simplify the following equation, when the given value of x is -1.<br><br>3( 2x + 1) + 4x + 15 ",
+      options: ["6",
+                "8",
+                "-4", 
+                "1"],
+      answer: "8"
+    },   
+
+
+      
+      // Add more questions here
+    ];
+
+    //define the array of images
+
+    var img= ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg", "9.jpg", "10.jpg", "11.jpg", "12.jpg", "13.jpg", "14.jpg", "15.jpg", "16.jpg", "17.jpg", "18.jpg", "19.gif", "20.jpg", "21.jpg", "22.jpg", "23.jpg", "24.jpg", "25.jpg", "26.jpg"]
+    
+    // Get a random question from the array
+
+    var randomQuestion = questions[0];
+    var updatedimage = img[0]
+    document.getElementById("math_ques").src = updatedimage
+    document.getElementById("numdiv").innerHTML = randomQuestion.questionNo;
+    document.getElementById("question").innerHTML = randomQuestion.question;
+    
+    randomQuestion.options.forEach(function(option) {
+      var li = document.createElement("li");
+      li.innerHTML = '<input type="radio" name="answer" value="' + option + '"> ' + option;
+      document.getElementById("options").appendChild(li);
+    });
+
+// Create a function here like family array project of Byjus to display next question \
+    // from array everytime instead of random question
+    score=0;
+    var i=1;
+    var count=questions.length
+    function newques(){
+      if(i==count){
+        document.getElementById("heading").innerHTML = "Thank You...."
+        document.getElementById("math_ques").src = "last.jpg"
+        document.getElementById("question").innerHTML="Score:"+score +"/" +count;
+        document.getElementById("cheers").play()
+        // document.getElementById("result").innerHTML ="Click on the next button on the top right corner to practice more"
+        document.getElementById("nextbtn").style.display="none";
+        document.getElementById("numdiv").style.display="none"
+         document.getElementById("picdiv").innerHTML = "<a style='margin-top:15%; width:100%; height:100px; font-size:30px' href=ac3.html class='btn btn-warning'>Next Challenge</a>"
+
+              
+      if(score<=3){
+
+      document.getElementById("options").innerHTML="<div class='progress'> <div class='progress-bar' role='progressbar' aria-valuenow='30' aria-valuemin='0' aria-valuemax='100' value='30' style='width:30%;background-color:red;'>  </div></div>"
+      document.getElementById("result").innerHTML="I Appreciate Your Attempt 😀"
+
+      }
+
+      if(score>2 && score<=6){
+
+      document.getElementById("options").innerHTML="<div class='progress'> <div class='progress-bar' role='progressbar' aria-valuenow='60' aria-valuemin='0' aria-valuemax='100' style='width:60%;background-color:blue;'>  <span class='sr-only'>70% Complete</span></div></div>"
+      document.getElementById("result").innerHTML="Well Done You're Smart 👍"
+
+
+}
+
+      if(score>6){
+
+    document.getElementById("options").innerHTML="<div class='progress'> <div class='progress-bar' role='progressbar' aria-valuenow='90' aria-valuemin='0' aria-valuemax='100' style='width:100%;background-color:green;'>  <span class='sr-only'>70% Complete</span></div></div>"
+    document.getElementById("result").innerHTML="I am Impressed <br> You're Super Smart 😎"
+
+
+}
+
+      }
+      else{
+      document.getElementById("options").innerHTML=""
+      document.getElementById("result").innerHTML =""
+      
+  
+      updatedimage= img[i]
+      document.getElementById("math_ques").src = updatedimage
+
+// Display the question and options on the page
+      randomQuestion = questions[i];    
+      document.getElementById("numdiv").innerHTML = randomQuestion.questionNo;
+    document.getElementById("question").innerHTML = randomQuestion.question;
+    
+    
+    randomQuestion.options.forEach(function(option) {
+      var li = document.createElement("li");
+      li.innerHTML = '<input type="radio" name="answer" value="' + option + '"> ' + option;
+      document.getElementById("options").appendChild(li);
+    });
+    document.getElementById("subbtn").style.display="inline-block"
+        document.getElementById("nextbtn").style.display="none"
+
+    i++;
+    }
+  }
+ 
+
+    // Check the selected answer against the correct answer
+    function checkAnswer() {
+      var selectedAnswer = document.querySelector('input[name="answer"]:checked').value;
+      if (selectedAnswer === randomQuestion.answer) {
+        score++;
+       
+      } 
+      document.getElementById("result").innerHTML = "Good Job! &#128512" ;
+        document.getElementById("points").play();
+        document.getElementById("subbtn").style.display="none"
+        document.getElementById("nextbtn").style.display="inline-block"
+    }
+    
+       
+      function abc(x){
+      i=x-1
+      document.getElementById("options").innerHTML=""
+      document.getElementById("result").innerHTML =""
+      
+  
+      updatedimage= img[i]
+      document.getElementById("math_ques").src = updatedimage
+
+// Display the question and options on the page
+      randomQuestion = questions[i];    
+      document.getElementById("numdiv").innerHTML = randomQuestion.questionNo;
+    document.getElementById("question").innerHTML = randomQuestion.question;
+    
+    
+    randomQuestion.options.forEach(function(option) {
+      var li = document.createElement("li");
+      li.innerHTML = '<input type="radio" name="answer" value="' + option + '"> ' + option;
+      document.getElementById("options").appendChild(li);
+    });
+    document.getElementById("subbtn").style.display="inline-block"
+        document.getElementById("nextbtn").style.display="none"
+
+    i++;
+    }
+
+
+  </script>
+</center>
+</body>
+</html>
